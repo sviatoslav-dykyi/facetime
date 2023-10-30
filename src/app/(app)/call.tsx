@@ -4,6 +4,7 @@ import { View } from "../../components/Themed";
 import {
   CallContent,
   CallTopView,
+  RingingCallContent,
   StreamCall,
   useCalls,
   useStreamVideoClient,
@@ -15,10 +16,10 @@ const callId = "default_4b1928cb-cc10-44dc-9e8c-ece6d1e1fa32";
 
 export default function CallScreen() {
   // 4 types of a call
-  const client = useStreamVideoClient();
 
   const calls = useCalls();
   const call = calls[0];
+
   // const [call] = useState(() => client?.call("default", callId));
 
   // useEffect(() => {
@@ -27,15 +28,15 @@ export default function CallScreen() {
   // }, [call]);
 
   if (!call) {
-    return <ActivityIndicator />;
+    return <Text>Call not found!</Text>;
   }
 
   return (
     <View style={styles.container}>
       <StreamCall call={call}>
-        <CallContent
+        <RingingCallContent
           CallTopView={() => <CallTopView title={`ID: ${call.id}`} />}
-          onHangupCallHandler={() => router.back()}
+          //onHangupCallHandler={() => router.back()}
         />
       </StreamCall>
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />

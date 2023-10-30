@@ -29,3 +29,6 @@ npx supabase secrets set --env-file supabase/.env
 npm i stream-chat
 npm i @supabase/supabase-js
 zip -r deployment .
+
+
+EXPO_PUBLIC_STREAM_API_KEY=qqwzdx29k77s

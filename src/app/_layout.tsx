@@ -4,13 +4,12 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { StreamVideo } from "@stream-io/video-react-native-sdk";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { PermissionsAndroid, Platform, useColorScheme } from "react-native";
 import { AuthProvider } from "../context/AuthProvider";
-import { client } from "../lib/stream";
+import { StreamClientProvider } from "../lib/stream";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -66,7 +65,7 @@ function RootLayoutNav() {
 
   return (
     <AuthProvider>
-      <StreamVideo client={client}>
+      <StreamClientProvider>
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
@@ -74,7 +73,7 @@ function RootLayoutNav() {
             <Stack.Screen name="(app)" options={{ headerShown: false }} />
           </Stack>
         </ThemeProvider>
-      </StreamVideo>
+      </StreamClientProvider>
     </AuthProvider>
   );
 }
